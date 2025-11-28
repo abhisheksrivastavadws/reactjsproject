@@ -1,25 +1,17 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      nodejs: 20
-
+  pre_build:
     commands:
-      # install npm
-      - yarn install
-      - NODE_OPTIONS="--max-old-space-size=4096"
-
+      - echo "pre_build phase"
+      - echo ${DOCKER_TOKEN} | docker login -u ${DOCKER_USERNAME} --password-stdin
   build:
     commands:
-      # run build script
-      - yarn build
+      - docker build -t my-react:latest .
+  post_build:
+    commands:
+      - echo "post build phases"
+      - docker tag -t my-react:latest ${DOCKER_USERNAME}/my-react:latest
+      - docker push ${DOCKER_USERNAME}/my-react:latest
 
-artifacts:
-  # include all files required to run application
-  # notably excluded is node_modules, as this will cause overwrite error on deploy
-  files:
-    - "./**/*"
-    - appspec.yml
-    - "build/**/*"
-  base-directory: build
+
