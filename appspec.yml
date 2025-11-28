@@ -15,4 +15,4 @@ permissions:
 hooks:
   ApplicationStart:
   - location: deployscript/application-start-hook.sh 
-    timeout: 300 
+    timeout: 305
