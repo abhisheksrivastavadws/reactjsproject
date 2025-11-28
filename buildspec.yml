@@ -11,7 +11,7 @@ phases:
   post_build:
     commands:
       - echo "post build phases"
-      - docker tag -t my-react:latest ${DOCKER_USERNAME}/my-react:latest
+      - docker tag my-react:latest ${DOCKER_USERNAME}/my-react:latest
       - docker push ${DOCKER_USERNAME}/my-react:latest
 
 
