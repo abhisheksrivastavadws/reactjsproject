@@ -1,8 +1,11 @@
 version: 0.2
 env:
-  secrets-manager:
-    DOCKER_TOKEN: dockerhub:token
-    DOCKER_USERNAME: dockerhub:user
+  # secrets-manager:
+  #   DOCKER_TOKEN: dockerhub:token
+  #   DOCKER_USERNAME: dockerhub:user
+  systemsmanager:
+    DOCKER_TOKEN: /dockerhub/token
+    DOCKER_USERNAME: /dockerhub/username
 phases:
   pre_build:
     commands:
