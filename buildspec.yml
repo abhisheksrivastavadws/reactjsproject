@@ -22,4 +22,4 @@ artifacts:
     - "./**/*"
     - appspec.yml
     - "build/reactjs/**/*"
-  base-directory: build
+  base-directory: build/reactjs
