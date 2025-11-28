@@ -1,7 +1,7 @@
 version: 0.0 
 os: linux 
 files:
-  - source: /
+  - source: build/reactjs
     destination: /var/www/reactjs
 permissions:
   - object: /var/www/reactjs
