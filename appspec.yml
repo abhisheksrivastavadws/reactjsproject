@@ -1,18 +1,20 @@
-version: 0.0 
-os: linux 
+version: 0.0
+os: linux
+
 files:
   - source: build/reactjs
     destination: /var/www/reactjs
+
 permissions:
   - object: /var/www/reactjs
-    mod: '0755'
-    pattern: '**'
     owner: root
     group: root
+    mode: '0755'
     type:
       - file
       - directory
+
 hooks:
   ApplicationStart:
-  - location: deployscript/application-start-hook.sh 
-    timeout: 300
+    - location: deployscript/application-start-hook.sh
+      timeout: 300
