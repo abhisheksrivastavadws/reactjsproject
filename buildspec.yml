@@ -3,6 +3,8 @@ env:
   # secrets-manager:
   #   DOCKER_TOKEN: dockerhub:token
   #   DOCKER_USERNAME: dockerhub:user
+  variables:
+    ECR_REPO: "800990441904.dkr.ecr.us-east-1.amazonaws.com/roy/angular"
   systemsmanager:
     DOCKER_TOKEN: /dockerhub/token
     DOCKER_USERNAME: /dockerhub/username
@@ -11,6 +13,9 @@ phases:
     commands:
       - echo "pre_build phase"
       - echo ${DOCKER_TOKEN} | docker login -u ${DOCKER_USERNAME} --password-stdin
+      # ECR LOGIN 
+      - AWS_MAIN_URI ="${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+      - aws ecr get-login-password | docker login -u AWS --password-stdin ${AWS_MAIN_URI}
   build:
     commands:
       - docker build -t my-react:latest .
@@ -19,5 +24,7 @@ phases:
       - echo "post build phases"
       - docker tag my-react:latest ${DOCKER_USERNAME}/my-react:latest
       - docker push ${DOCKER_USERNAME}/my-react:latest
+      - docker tag my-react:latest ${ECR_REPO}
+      - docker push ${ECR_REPO}
 
 
