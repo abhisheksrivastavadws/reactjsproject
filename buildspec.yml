@@ -14,7 +14,7 @@ phases:
       - echo "pre_build phase"
       - echo ${DOCKER_TOKEN} | docker login -u ${DOCKER_USERNAME} --password-stdin
       # ECR LOGIN 
-      - AWS_MAIN_URI ="${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+      - AWS_MAIN_URI="${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
       - aws ecr get-login-password | docker login -u AWS --password-stdin ${AWS_MAIN_URI}
   build:
     commands:
