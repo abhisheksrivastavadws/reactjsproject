@@ -22,9 +22,9 @@ phases:
   post_build:
     commands:
       - echo "post build phases"
-      - docker tag my-react:latest ${DOCKER_USERNAME}/my-react:latest
-      - docker push ${DOCKER_USERNAME}/my-react:latest
-      - docker tag my-react:latest ${ECR_REPO}
-      - docker push ${ECR_REPO}
+      - docker tag my-react:latest ${DOCKER_USERNAME}/my-react:${CODEBUILD_BUILD_ID:0:8}
+      - docker push ${DOCKER_USERNAME}/my-react:${CODEBUILD_BUILD_ID:0:8}
+      - docker tag my-react:latest ${ECR_REPO}:${CODEBUILD_BUILD_ID:0:8}
+      - docker push ${ECR_REPO}:${CODEBUILD_BUILD_ID:0:8}
 
 

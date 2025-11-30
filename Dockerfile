@@ -12,7 +12,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Serve the application with Nginx
-FROM nginx:stable-alpine
+FROM nginx:1.25
 
 COPY --from=builder /app/build /usr/share/nginx/html
 
